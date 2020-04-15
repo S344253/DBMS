@@ -1,0 +1,176 @@
+:::::::::::::::::::::::::::Computer Science::::::::::::::::::::::::::::::::::::::::::::::::
+------Sonu 
+------B.com(hons)
+------2100 
+------Commerce
+
+create database Records;
+
+use Records;
+create table EMPLOYEE ( Person_Name char(40), Street varchar(20), City varchar(25));
+
+create table WORKS ( Person_Name char(40) references EMPLOYEE(Person_Name),
+
+            Company_Name varchar (25) references COMPANY(Company_Name), Salary int(5) );
+
+alter table WORKS add primary key (Person_Name,Company_Name);
+
+create table COMPANY ( Company_Name varchar(25) primary key, City varchar(24) );
+
+alter table Employee add primary key (Person_name,Street);
+
+create table MANAGES (Person_Name char(40) reference employee(Person_name), Manager_Name char(40));
+
+alter table manages add primary key (Person_Name,Manager_Name);
+
+insert into Employee values('sonu','c-675','c1');
+
+insert into Employee values('Arun','c-568','c1');
+
+insert into Employee values( 'Naman','c-769','c1');
+
+insert into Employee values('karan','c-644','c2');
+
+insert into Employee values('vinay','h-785','c8');
+
+insert into Employee values('rajit','h-965','c8');
+
+insert into Employee values('pawan','h-3598','c1')
+;
+insert into Employee values('tarun', 'h-865','c9');
+
+insert into Employee values('arjun','h-854','c2');
+
+insert into Employee values('pankaj','b-985','c9');
+
+insert into Employee values('deepak','b-544','c6');
+
+insert into Employee values('shyam','b-685','c1');
+
+insert into Employee values('ram','b-855','c3');
+
+insert into Employee values('komal','k-86','c5');
+
+insert into Employee values('sanjana','k-25','c3');
+
+insert into Employee values('vijay','k-67','c4');
+
+insert into Employee values('sanjay','k-68','c6');
+
+insert into Employee values('rahul','z-986','c7');
+
+insert into Company values('Sambha Bank','c1');
+
+insert into Company values('NCB bank','c1');
+
+insert into Company values('AYC Ltd.','c2');
+
+insert into Company values('Rudra traders','c3');
+
+insert into Company values('Gupta &sons','c4');
+
+insert into WOrks values('sonu','NCB bank',15000);
+
+insert into WOrks values('Arun','NCB bank',15000);
+
+insert into WOrks values( 'Naman','NCB bank',11000);
+
+insert into WOrks values('sonu',' Samba bank',15000);
+
+insert into WOrks values('Arun','Samba bank',15000);
+
+insert into WOrks values( 'Naman','Samba bank',11000);
+
+insert into WOrks values('karan','NCB bank',8600);
+
+insert into WOrks values('vinay','NCB bank',7600);
+
+insert into WOrks values('rajit','Samba bank',11200);
+
+insert into WOrks values('pawan','Samba bank',9000);
+
+insert into WOrks values('tarun','Samba bank',7600);
+
+insert into WOrks values('arjun','Samba bank',9800);
+
+insert into WOrks values('pankaj','NCB bank',6000);
+
+insert into WOrks values('deepak','Samba bank',9000);
+
+insert into WOrks values('shyam','NCB bank',8500);
+
+insert into WOrks values('ram','AYC Ltd.',17000);
+
+insert into WOrks values('komal','Rudra traders',12000);
+
+insert into WOrks values('sanjana','Gupta &sons',13000);
+
+insert into WOrks values('vijay','AYC Ltd.',17000);
+
+insert into WOrks values('sanjay','Rudra traders',12000);
+
+insert into WOrks values('rahul','Gupta &sons',1250);
+
+insert into MANAGES values('rajit','sonu');
+
+insert into MANAGES values('pawan','sonu');
+
+insert into MANAGES values('tarun','arun');
+
+insert into MANAGES values('arjun','arun');
+
+insert into MANAGES values('pankaj','arun');
+
+insert into MANAGES values('deepak','naman');
+
+insert into MANAGES values('shyam','naman');
+
+insert into MANAGES values('ram','naman');
+
+insert into MANAGES values('komal','karan');
+
+insert into MANAGES values('sanjana','karan');
+
+insert into MANAGES values('vijay','vinay');
+
+insert into MANAGES values('sanjay','vinay');
+
+insert into MANAGES values('rahul','vinay');	
+
+
+
+1. Employee= primary key is (Person_name,Street)
+   Company=Primary key is Company_Name
+   Works= Primary key & reference key is (Person_Name,Company_Name)
+   manages= Primary key is (Person_Name,Manager_Name) & foreign key is Person_name
+
+
+2.alter table employee add column email varchar(20);
+
+3. select manager_name
+   from manages as m, works as w 
+   where m.person_name=w.person_name and (w.company_name="Samba bank" or w.Company_name="NCB Bank");
+
+4. select Person_name, Street, City, salary 
+   from employee as e, works as w 
+   where e.person_name=w.person_name and w.company_name="Samba Bank" and w.salary>10000;
+
+5. select e.person_name 
+   from employee as e, works as w, company as c 
+   where e.person_name=w.person_name and e.city=c.city and w.company_name=c.company_name;
+
+6. select company_name,
+   max(salary), min(salary), avg(salary) 
+   from works 
+   group by company_name;
+
+7. select company_name, sum(salary)
+   from works group by company_name;
+
+   select company_name,max(salary) 
+   from works;		
+
+
+********************************************************************************************************************************************
+*********************************************************************************************************************************************
+

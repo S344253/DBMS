@@ -1,0 +1,74 @@
+:::::::::::::::::::::::::::Computer Science::::::::::::::::::::::::::::::::::::::::::::::::
+------Sonu 
+------B.com(hons)
+------2100 
+------Commerce
+
+Create database University_library;
+
+use University_library;
+
+create table LibraryBooks(Accession_number int unique primary key, Title varchar(40) not null, Author varchar(55), Department char(40), PurchaseDate date , Price int);
+
+create table IssuedBooks (Accession_number int unique primary key, Borrower char(55));
+
+Alter table IssuedBooks add foreign key(Accession_number) references Librarybooks(Accession_number);
+
+insert into LibraryBooks values( 2138, 'Database system','Navathe','CS','2000-06-25', 950);
+
+insert into LibraryBooks values( 2138, 'More into DBMS','Navathe','CS','2003-06-25', 650);
+
+insert into LibraryBooks values( 3148, 'More into HTML','Sapna Kulkarni','CS', '1999-11-30', 356);
+
+insert into LibraryBooks values( 2489, 'Python Programming','Sheetal Taneja','CS', '2001-03-09', 539);
+
+insert into LibraryBooks values( 3695, 'Advanced SQL','Anil Prabhas','CS', '2003-05-20',650);
+
+insert into LibraryBooks values( 4361, 'Calculus','Dr. M.P. Sharma','Discrete Maths', '2004-06-25', 469);
+
+insert into LibraryBooks values( 2871, 'Concept of relation & function','Reena Chadda','Mathematics', '2002-03-11', 999);
+
+insert into LibraryBooks values( 6894, 'Corporate Law','Dr. Alok Kumar','Commerce', '2006-08-16', 190);
+
+insert into LibraryBooks values( 7993, 'Corporate accounting','Saroj Gupta','Commerce', '2005-08-30', 283);
+
+insert into LibraryBooks values( 9687, 'Environmental Studies','Erack Balucha','Environmental studies', '2000-09-06',654);
+
+insert into IssuedBooks values(7993,'Naman Gujral');
+
+insert into IssuedBooks values(3148,'Koushal Bhardwaj');
+
+insert into IssuedBooks values(3695,'Nitesh Chauhan');
+
+insert into IssuedBooks values(9687,'Shakshi vindra');
+
+insert into IssuedBooks values(2871,'Vinay Gupta');
+
+
+1. librarybooks =primary key is Accession_number 
+   Issuedbooks = primary key & reference key is Accession_number 
+
+2. delete from librarybooks where title='Database system';
+
+
+3. select * 
+from LibraryBooks 
+where department='CS';
+
+
+4.select *
+from LibraryBooks 
+where department='CS' and author = 'Navathe';
+
+
+5.select *
+from IssuedBooks as i,LibraryBooks as l  
+where i.Accession_number=l.Accession_number and department='CS';
+
+
+6.select *
+from Librarybooks
+ 
+where price <500 or PurchaseDate between '1999-01-01' and  '2004-01-01';
+********************************************************************************************************************
+********************************************************************************************************************
