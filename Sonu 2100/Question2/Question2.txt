@@ -1,0 +1,230 @@
+
+:::::::::::::::::::::::::::Computer Science::::::::::::::::::::::::::::::::::::::::::::::::
+------Sonu 
+------B.com(hons)
+------2100 
+------Commerce
+Create database Students;
+
+
+use Students;
+
+
+create table Personal_information(Roll_number int unique primary key, Name_of_student char(55) not null,
+
+ 
+            Date_of_birth date,Address varchar(80), Marks int, Phone_number varchar(10));
+
+
+create table Paper_Details(Paper_code varchar(5) unique primary key, Name_of_the_Paper varchar (25)) ;
+
+
+create table Student’s_Academic_and_Attendance_details (Roll_number int , Paper_code varchar(5) references Paper_Details(Paper_code )
+  
+           ,
+Attendance decimal(5,2),Marks_at_internal int) ;
+
+alter table Student’s_Academic_and_Attendance_details add primary key(Roll_number,Paper_code);
+
+
+Alter table Student’s_Academic_and_Attendance_details add foreign key(Roll_number ) references Personal_information(Roll_number);
+
+
+
+ insert into Personal_information values(64591,'koushal','2000-06-16','delhi',95,'9856491254');
+
+
+insert into Personal_information values(67514,'aman','2001-10-25','gorakpur',86,'8976458126');
+
+
+ insert into Personal_information values(85491,'anad','2001-11-03','culcutta',66,'9645872164');
+
+insert into Personal_information values(37549,'prem','1999-11-19','balsore',87,'7964582346');
+ 
+
+insert into Personal_information values(54619,'pankaj','2000-11-16','greater noida',84,'9856743164');
+
+
+ insert into Personal_information values(24618,'preeti','2000-03-30','delhi',96,'9846759124');
+
+
+ insert into Personal_information values(87942,'arun','1999-02-28','noida',84,'987563425');
+
+
+insert into Personal_information values(24681,'naman','2000-08-12','delhi',78,'9586524975');
+
+
+insert into Personal_information values(54942,'pawan','2002-01-25','farakhabad',71,'8996754216');
+
+
+
+insert into Paper_Details values ('p1','Enivornmental Studies');
+
+
+insert into Paper_Details values ('p2','Corporate law');
+
+
+insert into Paper_Details values ('p3','Introductory Economics' );
+
+
+insert into Paper_Details values ('p4','Political Science');
+
+
+insert into Paper_Details values ('p5','Mathematics');
+
+
+insert into Paper_Details values ('p6','Physics' );
+
+
+insert into Paper_Details values ('p7','Sociology');
+
+
+
+insert into Student’s_Academic_and_Attendance_details values (64591,'p1',75.6,86);
+
+
+insert into Student’s_Academic_and_Attendance_details values (64591,'p6',54.9,58);
+
+
+insert into Student’s_Academic_and_Attendance_details values (64591,'p2',85.00,64);
+
+
+insert into Student’s_Academic_and_Attendance_details values (67514,'p1',74.00,76);
+
+
+insert into Student’s_Academic_and_Attendance_details values (67514,'p7',54.9,68);
+
+
+insert into Student’s_Academic_and_Attendance_details values (67514,'p4',88.00,64);
+
+
+insert into Student’s_Academic_and_Attendance_details values (85491,'p1',78.00,46);
+
+
+insert into Student’s_Academic_and_Attendance_details values (85491,'p2',65.9,86);
+
+
+insert into Student’s_Academic_and_Attendance_details values (85491,'p7',35.00,38);
+
+
+insert into Student’s_Academic_and_Attendance_details values (37549,'p1',52.00,87);
+
+
+insert into Student’s_Academic_and_Attendance_details values (37549,'p3',41.56,98);
+
+
+insert into Student’s_Academic_and_Attendance_details values (37549,'p5',63.00,75);
+
+
+insert into Student’s_Academic_and_Attendance_details values (54619,'p1',29.00,59);
+
+
+insert into Student’s_Academic_and_Attendance_details values (54619,'p6',75.56,64);
+
+
+insert into Student’s_Academic_and_Attendance_details values (54619,'p4',65.75,54);
+
+
+insert into Student’s_Academic_and_Attendance_details values (24618,'p1',85.00,68);
+
+
+insert into Student’s_Academic_and_Attendance_details values (24618,'p3',42.56,76);
+
+
+insert into Student’s_Academic_and_Attendance_details values (24618,'p6',76.75,86);
+
+
+insert into Student’s_Academic_and_Attendance_details values (87942,'p1',84.00,74);
+
+
+insert into Student’s_Academic_and_Attendance_details values (87942,'p2',79,76);
+
+
+insert into Student’s_Academic_and_Attendance_details values (87942,'p7',83.75,78);
+
+
+insert into Student’s_Academic_and_Attendance_details values (24681,'p1',15.00,35);
+
+
+insert into Student’s_Academic_and_Attendance_details values (24681,'p4',86.94,81);
+
+
+insert into Student’s_Academic_and_Attendance_details values (24681,'p5',63.75,73);
+
+
+insert into Student’s_Academic_and_Attendance_details values (54942,'p1',43.00,79);
+
+
+insert into Student’s_Academic_and_Attendance_details values (54942,'p7',62.94,84);
+
+
+insert into Student’s_Academic_and_Attendance_details values (54942,'p2',82.75,97);
+ 
+1. Personal_information = Primary key is Roll_number 
+   Paper_details= Primary key is Paper_code 
+   Student’s_Academic_and_Attendance_details= Primary key and Reference key is Roll_number,Paper_code
+
+
+
+
+2. select *
+
+ 
+from Student’s_Academic_and_Attendance_details as s,Personal_information as p
+
+ 
+where s.Roll_number=p.Roll_number and paper_code='p2' and Marks_at_internal>75 and Attendance>75;
+
+
+
+
+
+3.select *
+ 
+
+  from Student’s_Academic_and_Attendance_details as s,Personal_information as p
+
+
+  where s.Roll_number=p.Roll_number and paper_code='p1' and address ='delhi' and Marks_at_internal>60;
+ 
+ 
+ 
+
+
+
+
+
+4. select Name_of_student,sum(Marks_at_internal),sum(Attendance)
+
+
+    from Student’s_Academic_and_Attendance_details as s,Personal_information as p
+
+ 
+    where s.Roll_number=p.Roll_number 
+ 
+ group by (Name_of_student);
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+5.  select Name_of_student,Marks_at_internal
+ 
+
+    from Student’s_Academic_and_Attendance_details as s,Personal_information as p
+
+ 
+    where s.Roll_number=p.Roll_number and paper_code='p2' 
+    group by Marks_at_internal 
+ 
+ 
+    order by Marks_at_internal desc;
+ 
+
+
+*********************************************************************************************************************************************
+************************************************************************************************************************************************

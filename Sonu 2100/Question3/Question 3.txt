@@ -1,0 +1,124 @@
+:::::::::::::::::::::::::::Computer Science::::::::::::::::::::::::::::::::::::::::::::::::
+------Sonu 
+------B.com(hons)
+------2100 
+------Commerce
+create database Vehicle_registration;
+
+use Vehicle_registration;
+
+create table Customer (CustID varchar(4) primary key, email varchar(30), Name char(40) not null, Phone varchar(10), ReferrerID varchar(4));
+
+create table Bicycle (BicycleID varchar (3) primary key, DatePurchased date ,
+        Color char(9) ,
+         CustID varchar(4) references customer(CustID), ModelNo varchar(5) references BicycleModel(ModelNo) );
+
+create table BicycleModel (ModelNo varchar(5) primary key, Manufacturer varchar(16), Style varchar(13));
+
+create table Service (StartDate date , BicycleID varchar(3) references Bicycle(BicycleID), EndDate date);
+
+alter table service add primary key (StartDate , BicycleID );
+
+
+insert into customer value ('c1','c11gmail.com','koushal','6427349468',null);
+
+insert into customer value ('c2','c12gmail.com','aman','9827349468','c5');
+
+insert into customer value ('c3','c113gmail.com','anad','6645978523','c9');
+
+insert into customer value ('c4','c114mail.com','prem',	'9645823468','c1');
+
+insert into customer value ('c5','c115gmail.com','pankaj','7856431259',null);
+
+insert into customer value ('c6','c16gmail.com'	,'preeti','8546975213','c1');
+
+insert into customer value ('c7','c115gmail.com	','arun','6342159785','c1');
+
+insert into customer value ('c8','c115gmail.com','naman	','9454612458',null);
+
+insert into customer value ('c9','c14gmail.com','pawan','6431542791','c5');
+
+
+insert into bicyclemodel values('m1','honda','octane');
+
+insert into bicyclemodel values('m2','hero','albatross');
+
+insert into bicyclemodel values('m3','honda','fugitive');
+
+insert into bicyclemodel values('m4','hero','fusion');
+
+insert into bicyclemodel values('m5','altcross','racer');
+
+insert into bicyclemodel values('m6','honda','Crusher');
+
+
+insert into Bicycle values('b1','2012-04-25','green','c1','m1');
+
+insert into Bicycle values('b2','2016-05-16','red','c2','m6');
+
+insert into Bicycle values('b3','2019-03-03','brown','c3','m2');
+
+insert into Bicycle values('b4','2014-09-30','red','c4','m2');
+
+insert into Bicycle values('b5','2012-06-06','yellow','c5','m3');
+
+insert into Bicycle values('b6','2014-02-13','pink','c6','m4');
+
+insert into Bicycle values('b7','2016-04-02','magenta','c7','m3');
+
+insert into Bicycle values('b8','2018-11-29','brown','c8','m1');
+
+insert into Bicycle values('b9','2013-12-01','black','c9','m5');
+
+insert into service values('2015-02-11','b1','2015-03-05');
+
+insert into service values('2017-06-25','b4','2017-07-09');
+
+insert into service values('2017-11-03','b2','2017-12-01');
+
+insert into service values('2018-03-12','b1','2018-04-11');
+
+insert into service values('2019-08-11','b9','2019-08-30');
+
+
+1. 
+
+Customer= primary key is CustId
+   Bicycle= primary key is  BicycleID & foreign key is CustId and ModelNo. 
+   Bicyclemodel=primary key is ModelNo.
+   Service=primary key is StartDate , BicycleID
+
+
+2. select *
+
+   from bicycle as B,bicyclemodel as BM
+
+   where B.ModelNo=BM.ModelNo and Manufacturer='honda';
+
+
+
+3. select *
+
+   from customer as c,bicycle as b
+
+   where c.CustID=b.CustID and ReferrerID='c1';
+
+
+
+4. select Manufacturer
+
+   from bicycle as B,bicyclemodel as BM
+
+   where  B.ModelNo=BM.ModelNo and color='red';
+
+
+
+5. select ModelNo
+
+   from service as s, bicycle as b
+
+   where s.BicycleID=b.BicycleID 
+
+
+
+
